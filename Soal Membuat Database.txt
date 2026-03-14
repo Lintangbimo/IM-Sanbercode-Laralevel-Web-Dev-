@@ -1,0 +1,142 @@
+Soal 1 Membuat Database
+ 
+
+Buatlah database dengan nama “myshop”. Tulislah di text jawaban pada nomor 1.
+
+ 
+
+Soal 2 Membuat Table di Dalam Database
+ 
+
+Buatlah tabel – tabel baru di dalam database myshop sesuai data-data berikut.
+
+ 
+
+users
+field	type
+id	INTEGER AUTO INCREMENT PRIMARY KEY
+name	varchar(255)
+email	varchar(255)
+password	varchar(255)
+ 
+categories
+field	type
+id	INTEGER AUTO INCREMENT PRIMARY KEY
+name	varchar(255)
+ 
+
+ 
+
+items
+field	type
+id	INTEGER AUTO INCREMENT PRIMARY KEY
+name	varchar(255)
+description	varchar(255)
+price	integer
+stock	integer
+category_id	integer (foreign key references id on categories)
+ 
+
+ 
+
+ 
+
+tuliskan jawaban pada file text jawaban dengan nomor 2.
+
+ 
+
+Soal 3 Memasukkan Data pada Table
+ 
+
+Masukkanlah data data berikut dengan perintah SQL “INSERT INTO . . ” ke dalam table yang sudah dibuat pada soal sebelumnya.
+
+ 
+users
+name	email	password
+John Doe	john@doe.com	john123
+Jane Doe	jane@doe.com	jenita123
+ 
+categories
+name
+gadget
+cloth
+men
+women
+branded
+ 
+items
+name	description	price	stock	category_id
+Sumsang b50	hape keren dari merek sumsang	4000000	100	1
+Uniklooh	baju keren dari brand ternama	500000	50	2
+IMHO Watch	jam tangan anak yang jujur banget	2000000	10	1
+ 
+Soal 4 Mengambil Data dari Database
+ 
+
+1. CREATE DATABASE myshop;
+2. CREATE TABLE users (
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+email VARCHAR(255),
+password VARCHAR(255)
+);
+
+CREATE TABLE categories (
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255)
+);
+
+CREATE TABLE items (
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+description VARCHAR(255),
+price INT,
+stock INT,
+category_id INT,
+FOREIGN KEY (category_id) REFERENCES categories(id)
+);
+
+3. INSERT INTO users (name, email, password) VALUES
+('John Doe', 'john@doe.com', 'john123'),
+('Jane Doe', 'jane@doe.com', 'jenita123');
+
+INSERT INTO categories (name) VALUES
+('gadget'),
+('cloth'),
+('men'),
+('women'),
+('branded');
+
+INSERT INTO items (name, description, price, stock, category_id) VALUES
+('Sumsang b50', 'hape keren dari merek sumsang', 4000000, 100, 1),
+('Uniklooh', 'baju keren dari brand ternama', 500000, 50, 2),
+('IMHO Watch', 'jam tangan anak yang jujur banget', 2000000, 10, 1);
+
+
+4. a. SELECT id, name, email
+FROM users;
+b. SELECT *
+FROM items
+WHERE price > 1000000;
+
+1. SELECT *
+FROM items
+WHERE name LIKE '%uniklo%';
+2. SELECT *
+FROM items
+WHERE name LIKE '%watch%';
+
+c. SELECT 
+items.name,
+items.description,
+items.price,
+items.stock,
+items.category_id,
+categories.name AS kategori
+FROM items
+JOIN categories 
+ON items.category_id = categories.id;
+
+5. UPDATE items
+SET price = 2500000
+WHERE name = 'Sumsang b50';
